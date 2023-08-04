@@ -61,7 +61,7 @@ https://github.com/precisecoding/challeng5calander
 
 ### Deployed link:
 
-
+https://precisecoding.github.io/challeng5calander/
 
 ### This site was build using github pages.
 
@@ -69,7 +69,7 @@ https://pages.github.com/
 
 ### License
 
-### MIT License: 
+MIT License: 
 https://opensource.org/licenses/MIT 
 https://choosealicense.com/licenses/mit/ 
 LICENSE file included in repository.
