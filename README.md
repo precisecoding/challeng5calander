@@ -55,7 +55,7 @@ This project stands out to me because its the first time I have strung all these
 
 ![Calander App](./Assets/images/project5stillshot.png)
 
-### Link to githubrepo:
+### Link to github repo:
 
 https://github.com/precisecoding/challeng5calander
 
@@ -63,7 +63,7 @@ https://github.com/precisecoding/challeng5calander
 
 https://precisecoding.github.io/challeng5calander/
 
-### This site was build using github pages.
+### This site was built using github pages.
 
 https://pages.github.com/
 
