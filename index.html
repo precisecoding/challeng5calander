@@ -1,0 +1,198 @@
+<!-- # FizzBuzz Challenge
+- Youre give an array of numbers. The output is each individual number.
+However, any number divisile by 3, should instead print 'fizz'.
+Any number divisible by 5, should instead print 'buzz'. 
+Finally, any number divisible by 3 and 5, should instead print 'fizzBuzz'.
+
+1.) Define the input 
+- into an array 
+2.) Find out which numbers are divisible by 3 - Look through the deck 'Iterating' over the array. 
+4.) If the number is divisible by 5, write fizzBuzz.
+5.) If divisible by 3 and 5, write fizzBuzz 
+1, 2,  -->
+
+<!-- GIVEN I am using a daily planner to create a schedule
+WHEN I open the planner
+THEN the current day is displayed at the top of the calendar
+    1) Capture current date
+        - make a function to get the current date
+        - use dayjs
+    2) Display it
+        - indentify target (document.querySelector, document.getElementById, $())
+        - textContent or text
+WHEN I scroll down
+THEN I am presented with timeblocks for standard business hours of 9am to 5pm
+    1) Enter the remaining time grids into the application such that there are 8 time blocks, 9 to 5.
+        - Copy and paste the previous examples such that there are 8 time blocks.
+WHEN I view the timeblocks for that day
+THEN each timeblock is color coded to indicate whether it is in the past, present, or future (gray, red, or green)
+    1) define the past, present, or future
+        - Already done!!! Use the past, present, or future classes
+    2) Assign a color to each
+        - Define the present time
+        - iterate over all of the time blocks
+            - condition:
+                - if the time block is equal to the current time, give it the present class
+                - if the time block is less than the current time, give it the past class
+                - if the time block is greater than the current time, give it the future class
+WHEN I click into a timeblock
+THEN I can enter an event
+WHEN I click the save button for that timeblock
+THEN the text for that event is saved in local storage
+    1) Listen for when the save button is clicked
+        - add an event listener to
+    2) Each block is savable independent of the other blocks
+      // Select the immediate parent container of ALL of the buttons
+  var container = document.querySelector('.container-lg');
+  // Event listener on the PARENT container of all the buttons
+  container.addEventListener('click', (event) => {
+    // conditional that checks if the element that was clicked is a button
+    if (event.target.className.includes('btn')) {
+      // If a button element was clicked, print the value of the textbox next to THAT button.
+      console.log(event.target.previousElementSibling.value)
+    }
+  })
+WHEN I refresh the page
+THEN the saved events persist
+    1) When page loads, utilize localStorage to grab any data and display it to the screen -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./Assets/style.css" />
+    <title>Work Day Scheduler</title>
+  </head>
+
+  <body>
+    <header class="p-5 mb-4 border-5 border-bottom border-dark text-center">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+
+    </header>
+    <div class="container-lg px-5">
+      <!-- Use class for "past", "present", and "future" to apply styles to the
+        time-block divs accordingly. The javascript will need to do this by
+        adding/removing these classes on each div by comparing the hour in the
+        id to the current hour. The html provided below is meant to be an example
+        demonstrating how the css provided can be leveraged to create the
+        desired layout and colors. The html below should be removed or updated
+        in the finished product. Remember to delete this comment once the
+        code is implemented.
+        -->
+
+      <!-- Example of a past time block. The "past" class adds a gray background color. -->
+      <div id="hour-9" class="row time-block past">
+        <div class="col-2 col-md-1 hour text-center py-3">9AM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Example of a a present time block. The "present" class adds a red background color. -->
+      <div id="hour-10" class="row time-block past">
+        <div class="col-2 col-md-1 hour text-center py-3">10AM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Example of a future time block. The "future" class adds a green background color. -->
+      <div id="hour-11" class="row time-block past">
+        <div class="col-2 col-md-1 hour text-center py-3">11AM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+        <!-- Example of a future time block. The "future" class adds a green background color. -->
+        <div id="hour-12" class="row time-block past">
+            <div class="col-2 col-md-1 hour text-center py-3">12PM</div>
+            <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+            <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+              <i class="fas fa-save" aria-hidden="true"></i>
+            </button> 
+          </div>
+
+            <!-- Example of a future time block. The "future" class adds a green background color. -->
+      <div id="hour-13" class="row time-block past">
+        <div class="col-2 col-md-1 hour text-center py-3">1PM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+        <!-- Example of a future time block. The "future" class adds a green background color. -->
+        <div id="hour-14" class="row time-block past">
+            <div class="col-2 col-md-1 hour text-center py-3">2PM</div>
+            <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+            <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+              <i class="fas fa-save" aria-hidden="true"></i>
+            </button>
+          </div>
+
+            <!-- Example of a future time block. The "future" class adds a green background color. -->
+      <div id="hour-15" class="row time-block past">
+        <div class="col-2 col-md-1 hour text-center py-3">3PM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+        <!-- Example of a future time block. The "future" class adds a green background color. -->
+        <div id="hour-16" class="row time-block present">
+            <div class="col-2 col-md-1 hour text-center py-3">4PM</div>
+            <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+            <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+              <i class="fas fa-save" aria-hidden="true"></i>
+            </button>
+          </div>
+
+            <!-- Example of a future time block. The "future" class adds a green background color. -->
+      <div id="hour-17" class="row time-block future">
+        <div class="col-2 col-md-1 hour text-center py-3">5PM</div>
+        <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+        <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+          <i class="fas fa-save" aria-hidden="true"></i>
+        </button>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script> -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/advancedFormat.js"></script>
+    <!--dayjs library API-->
+    <script src="script.js"></script>
+  </body>
+</html>
+
+
